@@ -2,11 +2,11 @@ package org.augutus.demo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.augutus.demo.dto.UserDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,5 +31,14 @@ public class UserController {
     @JsonView(UserDto.DetailUserView.class)
     public UserDto findById(@PathVariable Long userId) {
         return new UserDto("Sam", "123456");
+    }
+
+    @PostMapping
+    public String create(@RequestBody @Valid UserDto userDto, BindingResult errors) {
+        if (errors.hasErrors()) {
+            errors.getFieldErrors().forEach(error -> System.out.println(error.getField() + ":" + error.getDefaultMessage()));
+        }
+        System.out.println(userDto);
+        return "success";
     }
 }
