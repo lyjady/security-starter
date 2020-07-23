@@ -1,0 +1,14 @@
+server:
+  port: 7110
+spring:
+  application:
+    name: security-browser-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.0.108:3306/security_borwser
+    username: root
+    password: 123456
+  redis:
+    host: 192.168.0.110
+  session:
+    store-type: none

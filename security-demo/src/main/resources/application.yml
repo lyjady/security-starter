@@ -1,0 +1,5 @@
+server:
+  port: 7300
+spring:
+  application:
+    name: security-demo-service

@@ -12,6 +12,8 @@
 
     <modules>
         <module>security-core</module>
+        <module>security-browser</module>
+        <module>security-app</module>
     </modules>
 
     <groupId>org.augustus.security</groupId>
@@ -25,6 +27,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
+        <security.core.version>1.0-SNAPSHOT</security.core.version>
     </properties>
 
     <dependencyManagement>
