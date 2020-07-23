@@ -14,6 +14,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public String handleValidException(MethodArgumentNotValidException e) {
+        e.printStackTrace();
         BindingResult result = e.getBindingResult();
         result.getFieldErrors().forEach(error -> System.out.println(error.getField() + ": " + error.getDefaultMessage()));
         return "fail";

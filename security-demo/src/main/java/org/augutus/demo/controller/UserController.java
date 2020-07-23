@@ -34,10 +34,7 @@ public class UserController {
     }
 
     @PostMapping
-    public String create(@RequestBody @Valid UserDto userDto, BindingResult errors) {
-        if (errors.hasErrors()) {
-            errors.getFieldErrors().forEach(error -> System.out.println(error.getField() + ":" + error.getDefaultMessage()));
-        }
+    public String create(@RequestBody @Validated UserDto userDto) {
         System.out.println(userDto);
         return "success";
     }
