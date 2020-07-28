@@ -2,6 +2,7 @@ package org.augutus.demo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.augutus.demo.dto.UserDto;
+import org.augutus.demo.exception.UserNotExistException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,14 @@ public class UserController {
     @PostMapping
     public String create(@RequestBody @Validated UserDto userDto) {
         System.out.println(userDto);
+        return "success";
+    }
+
+    @PutMapping
+    public String update(@RequestBody @Validated UserDto user) {
+        if (user.getId() == 1) {
+            throw new UserNotExistException(user.getId());
+        }
         return "success";
     }
 }

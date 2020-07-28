@@ -1,8 +1,10 @@
 package org.augutus.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.augutus.demo.validator.UserStatus;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 import java.util.Date;
 import java.util.StringJoiner;
 
@@ -25,6 +27,12 @@ public class UserDto {
     private String password;
 
     private Date createTime;
+
+    @Past(message = "生日日期不正确")
+    private Date birthday;
+
+    @UserStatus(values = {1, 2, 3})
+    private Integer status;
 
     public UserDto() {
     }
@@ -72,6 +80,24 @@ public class UserDto {
         return this;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public UserDto setBirthday(Date birthday) {
+        this.birthday = birthday;
+        return this;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public UserDto setStatus(Integer status) {
+        this.status = status;
+        return this;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", UserDto.class.getSimpleName() + "[", "]")
@@ -79,6 +105,7 @@ public class UserDto {
                 .add("username='" + username + "'")
                 .add("password='" + password + "'")
                 .add("createTime=" + createTime)
+                .add("birthday=" + birthday)
                 .toString();
     }
 }
